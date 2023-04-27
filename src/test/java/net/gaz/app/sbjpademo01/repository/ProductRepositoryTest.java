@@ -22,12 +22,12 @@ class ProductRepositoryTest {
     void saveMethod(){
         //1º
         Product product = new Product();
-        product.setName("product 1");
-        product.setDescription("product 1 description");
-        product.setSku("200ABC");
-        product.setPrice(new BigDecimal(100));
+        product.setName("product 3");
+        product.setDescription("product 3 description");
+        product.setSku("555GAZ");
+        product.setPrice(new BigDecimal(555));
         product.setActive(true);
-        product.setImageUrl("product1.png");
+        product.setImageUrl("product555.png");
 
         //2º
         Product saveObjetc = productRepository.save(product);
@@ -52,6 +52,21 @@ class ProductRepositoryTest {
         productRepository.save(product);
         /** EntityManager merge() method */
 
+    }
+    @Test
+    void findByIdMethd(){
+        /**
+         * - Recuperar una entidad de la tabla de base de datos utilizando el método buscar por ID.
+         * - por método ID es básicamente de la interfaz del repositorio crud y encontrar por método ID devuelve opcional(Retrieve a single
+         *   entity by id from the databases)
+         * - Como el nombre lo sugiere es encontrar por el método ID nos permite obtener o recuperar una entidad basado en el ID proporcionado
+         *   de la tabla de la base de datos
+         */
+
+        Long id = 4L;
+        Product product = productRepository.findById(id).get();
+        Product printObjetc = productRepository.save(product);
+        System.out.println(printObjetc.toString());
     }
 
 }
