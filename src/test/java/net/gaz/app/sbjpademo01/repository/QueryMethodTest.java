@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 @SpringBootTest
 public class QueryMethodTest {
 
@@ -18,8 +20,24 @@ public class QueryMethodTest {
         Product product = productRepository.findByName("product 3");
         System.out.println(product.getId());
         System.out.println(product.getPrice());
-        //System.out.println(product.getDescription());
+        System.out.println(product.getDescription());
         System.out.println(product.getLastUpdate());
+    }
+
+    @Test
+    void findById(){
+        /**
+         * Simplemente podemos llamar aquí un método get
+         * Este método get()<- , básicamente devuelve un nombre de entidad en nuestro caso, entidad de producto,
+         * ya que si no tenemos que implentar  Optional<Product> como en la emplentaccion de la interface
+         * y no nos vas dejar invocar la propiedades de la entidad en cuestion.
+         */
+        Product product = productRepository.findById(16L).get(); // <-
+        System.out.println(product.getName());
+        System.out.println(product.getSku());
+        System.out.println(product.getDescription());
+        System.out.println(product.getPrice());
+        System.out.println(product.getId());
     }
 
 }
