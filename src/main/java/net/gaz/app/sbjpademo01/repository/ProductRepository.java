@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+/**Este va a ser nuestro método de consulta para encontrar o recuperar un producto por nombre.
+ * Este método de consulta básicamente devuelve el nombre de UN producto
+ * utilizando su nombre como criterio de búsqueda, Si el producto no se encuntra, este metodo retona un NULL  */
+    public Product findByName(String name);
 
 
 

@@ -183,10 +183,5 @@ class ProductRepositoryTest {
         }else {
             System.out.println("NO existe el id: " + id);
         }
-
-
-
     }
-
-
 }
