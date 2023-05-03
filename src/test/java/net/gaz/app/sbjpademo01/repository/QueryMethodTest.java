@@ -117,4 +117,15 @@ public class QueryMethodTest {
             System.out.println(product.getDescription());
         });
     }
+
+    @Test
+    void findByNameLikeMethod(){
+        List<Product> products = productRepository.findByNameLike("product 300");
+        products.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
 }
