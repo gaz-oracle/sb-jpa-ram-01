@@ -73,18 +73,6 @@ public class QueryMethodTest {
         System.out.println(product.getDescription());
     }
 
-    /**
-     * @Test void findDistinctByNameNotInMethod(){
-     * Product productList = productRepository.findDistinctByName("product 200");
-     * productList.forEach(product -> {
-     * System.out.println(product.getId());
-     * System.out.println(product.getPrice());
-     * System.out.println(product.getName());
-     * System.out.println(product.getDescription());
-     * });
-     * }
-     */
-
 
     @Test
     void findByPriceGreaterThanMethod() {
@@ -160,6 +148,28 @@ public class QueryMethodTest {
     @Test
     void findByNameInMethod(){
         List<Product> products = productRepository.findByNameIn(List.of("product 3","product 200","product 300"));
+        products.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
+
+    @Test
+    void findFirst2ByOrderByNameAscMethod(){
+        List<Product> products = productRepository.findFirst2ByOrderByNameAsc();
+        products.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
+
+    @Test
+    void findFirst2ByOrderByNameAscMethod2(){
+        List<Product> products = productRepository.findFirst3ByOrderByIdDesc();
         products.forEach(product -> {
             System.out.println(product.getId());
             System.out.println(product.getPrice());
