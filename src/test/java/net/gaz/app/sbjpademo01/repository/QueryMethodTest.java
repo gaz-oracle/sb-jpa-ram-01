@@ -6,17 +6,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
 public class QueryMethodTest {
 
-    /** vamos a inyectar la interface ProductRepository aquí*/
+    /**
+     * vamos a inyectar la interface ProductRepository aquí
+     */
     @Autowired
     private ProductRepository productRepository;
 
     @Test
-    void findByNameMethod(){
+    void findByNameMethod() {
         Product product = productRepository.findByName("product 3");
         System.out.println(product.getId());
         System.out.println(product.getPrice());
@@ -25,7 +28,7 @@ public class QueryMethodTest {
     }
 
     @Test
-    void findById(){
+    void findById() {
         /**
          * Simplemente podemos llamar aquí un método get
          * Este método get()<- , básicamente devuelve un nombre de entidad en nuestro caso, entidad de producto,
@@ -38,6 +41,30 @@ public class QueryMethodTest {
         System.out.println(product.getDescription());
         System.out.println(product.getPrice());
         System.out.println(product.getId());
+    }
+
+    @Test
+    void findByNameOrDescriptionMethod() {
+        List<Product> productList = productRepository.
+                findByNameOrDescription("product 300", "product 100 description");
+        productList.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
+
+    @Test
+    void findByNameAndDescriptionMethod() {
+        List<Product> productList = productRepository.
+                findByNameAndDescription("product 100", "product 100 description");
+        productList.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
     }
 
 }
