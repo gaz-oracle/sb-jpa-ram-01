@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -132,6 +133,22 @@ public class QueryMethodTest {
     @Test
     void findByPriceBetweenMethod(){
         List<Product> products = productRepository.findByPriceBetween(BigDecimal.valueOf(200),BigDecimal.valueOf(600));
+        products.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
+
+    @Test
+    void findByDateCreatedMethod(){
+        // Star Date  12:58:14
+        LocalDateTime starDate = LocalDateTime.of(2023, 04, 29, 10,00,00);
+        // End Date 13:25:32
+        LocalDateTime endDate = LocalDateTime.of(2023, 04, 29, 13,59,59);
+
+        List<Product> products = productRepository.findByDateCreatedBetween(starDate,endDate);
         products.forEach(product -> {
             System.out.println(product.getId());
             System.out.println(product.getPrice());
