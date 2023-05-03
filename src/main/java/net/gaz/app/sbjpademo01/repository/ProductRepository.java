@@ -85,6 +85,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByPriceLessThan(Long price);
 
+    /**
+     * Return the filtered the product recors that march the given text
+     *
+     * @param name
+     * @return
+     */
+    List<Product> findByNameContaining(String name);
 
 }
 
