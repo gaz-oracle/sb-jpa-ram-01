@@ -55,4 +55,6 @@ public class Product {
 
     @UpdateTimestamp /** take a time from SO*/
     private LocalDateTime lastUpdate;
+
+
 }

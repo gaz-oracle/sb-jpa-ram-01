@@ -1,13 +1,11 @@
 package net.gaz.app.sbjpademo01.repository;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import net.gaz.app.sbjpademo01.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 public class QueryMethodTest {
@@ -45,8 +43,7 @@ public class QueryMethodTest {
 
     @Test
     void findByNameOrDescriptionMethod() {
-        List<Product> productList = productRepository.
-                findByNameOrDescription("product 300", "product 100 description");
+        List<Product> productList = productRepository.findByNameOrDescription("product 300", "product 100 description");
         productList.forEach(product -> {
             System.out.println(product.getId());
             System.out.println(product.getPrice());
@@ -57,8 +54,7 @@ public class QueryMethodTest {
 
     @Test
     void findByNameAndDescriptionMethod() {
-        List<Product> productList = productRepository.
-                findByNameAndDescription("product 100", "product 100 description");
+        List<Product> productList = productRepository.findByNameAndDescription("product 100", "product 100 description");
         productList.forEach(product -> {
             System.out.println(product.getId());
             System.out.println(product.getPrice());
@@ -67,4 +63,47 @@ public class QueryMethodTest {
         });
     }
 
+    @Test
+    void findDistinctByNameMethod() {
+        Product product = productRepository.findDistinctByName("product 200");
+        System.out.println(product.getId());
+        System.out.println(product.getPrice());
+        System.out.println(product.getName());
+        System.out.println(product.getDescription());
+    }
+
+    /**
+     * @Test void findDistinctByNameNotInMethod(){
+     * Product productList = productRepository.findDistinctByName("product 200");
+     * productList.forEach(product -> {
+     * System.out.println(product.getId());
+     * System.out.println(product.getPrice());
+     * System.out.println(product.getName());
+     * System.out.println(product.getDescription());
+     * });
+     * }
+     */
+
+
+    @Test
+    void findByPriceGreaterThanMethod() {
+        List<Product> products = productRepository.findByPriceGreaterThan(BigDecimal.valueOf(100));
+        products.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
+
+    @Test
+    void findByPriceLessThanMethod() {
+        List<Product> products = productRepository.findByPriceLessThan(220L); /** BEST BigDecimal BECUASE VALUES DECIMALS */
+        products.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
 }
