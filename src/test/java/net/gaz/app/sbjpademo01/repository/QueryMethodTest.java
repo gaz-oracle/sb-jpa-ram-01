@@ -156,4 +156,15 @@ public class QueryMethodTest {
             System.out.println(product.getDescription());
         });
     }
+
+    @Test
+    void findByNameInMethod(){
+        List<Product> products = productRepository.findByNameIn(List.of("product 3","product 200","product 300"));
+        products.forEach(product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getPrice());
+            System.out.println(product.getName());
+            System.out.println(product.getDescription());
+        });
+    }
 }

@@ -120,6 +120,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      */
     List<Product> findByDateCreatedBetween(LocalDateTime starDate, LocalDateTime endDate);
 
+    /**
+     * Returns list of products based on multiple values:
+     *
+     * @param names
+     * @return
+     */
+    List<Product> findByNameIn(List<String> names);
+
 }
 
 
