@@ -95,10 +95,20 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     /**
      * Return Product  based on SQL like condition
+     *
      * @param name
      * @return
      */
     List<Product> findByNameLike(String name);
+
+    /**
+     * Returns a products whose price between start price and end price.
+     *
+     * @param starPrice
+     * @param endPrice
+     * @return
+     */
+    List<Product> findByPriceBetween(BigDecimal starPrice, BigDecimal endPrice);
 
 }
 
